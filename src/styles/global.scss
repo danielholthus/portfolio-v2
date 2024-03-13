@@ -194,22 +194,13 @@ p {
 .background {
 	min-height: 100%;
 	isolation: isolate;
-	background:
-		/*noise*/ url('/assets/backgrounds/noise.png') top center/220px repeat,
-		/*base*/ var(--bg-color-primary);
-	background-blend-mode:
-		/*noise*/ overlay,
-		/*base*/ normal;
+	background: var(--bg-color-primary);
+
 }
 .background-secondary {
 	min-height: 100%;
 	isolation: isolate;
-	background:
-		/*noise*/ url('/assets/backgrounds/noise.png') top center/220px repeat,
-		/*base*/ var(--bg-color-secondary);
-	background-blend-mode:
-		/*noise*/ overlay,
-		/*base*/ normal;
+	background: var(--bg-color-secondary);
 }
 
 .highlight {
