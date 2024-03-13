@@ -1,0 +1,98 @@
+---
+import Icon from "../components/Icon.astro"
+---
+<div class="contact-email">
+	<div class="email-hover"><span>Click to copy</span></div>
+	<div class="email-icon">
+		<Icon icon="paper-plane-tilt" size="1.6em" />
+	</div>
+	<div class="email-address"><span>daniel@danielholthus.com</span></div>
+	<img class="click-me" src="/assets/click-me.svg">
+</div>
+
+<script>
+	document.querySelector('.contact-email')!.addEventListener('click', () => {
+		const hoverElement = document.querySelector('.email-hover')!
+		const email = document.querySelector('.email-address span')!.innerHTML
+		navigator.clipboard.writeText(email)
+		hoverElement.innerHTML = 'Copied!'
+		setTimeout(() => {
+			hoverElement.innerHTML = 'Click to copy'
+		}, 2000)
+		// @ts-ignore, function pulled from the script below
+		confetti({
+        spread: 200,
+        origin: { y: 0.75 }
+    })
+	})
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+<style>
+	.contact-email {
+		position: relative;
+		display: flex;
+		align-items: center;
+		border: 1px solid var(--gray-0);
+		cursor: pointer;
+		border-radius: 10px;
+		max-width: 400px;
+		width: 100%;
+	}
+
+	.email-hover {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		background-color: var(--accent-blue);
+		border-radius: 9px;
+		color: var(--gray-999);
+		font-weight: 700;
+		font-size: 1.5rem;
+		transition: opacity 0.1s;
+	}
+
+	.contact-email:hover .email-hover {
+		opacity: 0.98;
+
+	}
+
+	.email-icon {
+		display: flex;
+		height: 100%;
+		padding: 1.5rem;
+		border-right: 1px solid var(--gray-0);
+	}
+
+	.email-address {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		overflow-wrap: anywhere;
+	}
+
+	.copy-text {
+		font-size: 12px;
+		color: #fff;
+		background-color: #000;
+		padding: 5px;
+		border-radius: 5px;
+	}
+
+	.click-me {
+		position: absolute;
+		left: calc(100% - 45px);
+		top: calc(100% - 50px);
+		transform: translate(-50%, 50%);
+		animation: rotate linear 15s infinite;
+	}
+
+	
+</style>

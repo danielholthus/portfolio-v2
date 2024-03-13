@@ -1,0 +1,126 @@
+---
+
+---
+<div class="hero gap-4 full-height">
+	<div id="hero-square"></div>
+	<div id="hero-circle"></div>
+	<div id="hero-corner"></div>
+	<div id="typing-text-container">
+		<span>
+			<span class="typing-text"></span>
+			<span class="typing-text-cursor">&nbsp</span>
+		</span>
+	</div>
+</div>
+
+<script>
+	/* Custom scripts here */
+	const typedTextSpan = document.querySelector('.typing-text')!
+	const cursorSpan = document.querySelector(".typing-text-cursor")!
+	const textArray = ["full-stack software engineer", "dev lead", "computer science graduate", "coffee overconsumer"]
+	const typingDelay = 70
+	const erasingDelay = 35
+	const newTextDelay = 3000
+	let textArrayIndex = 0
+	let charIndex = 0
+	function erase() {
+		if (charIndex > 0) {
+			if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing")
+			typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1)
+			charIndex--
+			setTimeout(erase, erasingDelay)
+		} else {
+			cursorSpan!.classList.remove("typing")
+			textArrayIndex++
+			if (textArrayIndex >= textArray.length) textArrayIndex = 0
+			setTimeout(type, typingDelay + 1000)
+		}
+	}
+	function type() {
+		if (charIndex < textArray[textArrayIndex].length) {
+			if (!!cursorSpan && !cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing")
+			if (!!typedTextSpan) typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex)
+			charIndex++
+			setTimeout(type, typingDelay)
+		} else {
+			cursorSpan!.classList.remove("typing")
+			setTimeout(erase, newTextDelay);
+		}
+	}
+	document.addEventListener("DOMContentLoaded", function () {
+		setTimeout(type, 1000);
+	})
+</script>
+
+<style>
+	/* Default styles here */
+	.hero {
+		position: relative;
+		border-bottom: 1px solid #222222;
+		overflow: hidden;
+	}
+
+	#hero-square {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		transform: translate(-3%, 50%);
+		width: 35dvw;
+		height: 35dvw;
+		background-color: var(--accent-blue);
+		border: 2px solid #222222;
+		border-radius: 10%;
+
+	}
+
+	#hero-corner {
+		position: absolute;
+		bottom: 100%;
+		left: 100%;
+		transform: translateX(-50%) translateY(50%) rotate(45deg);
+		width: 30dvw;
+		height: 30dvw;
+		background-color: #168f22;
+		border: 1px solid #222222;
+		border-radius: 5%;
+	}
+
+	#hero-circle {
+		position: absolute;
+		top: 20dvh;
+		left: 0;
+		transform: translateX(-50%);
+		width: 30dvw;
+		height: 30dvw;
+		background-color: var(--accent-regular);
+		border-radius: 50%;
+		border: 1px solid #222222;
+	}
+
+	#typing-text-container {
+		color: transparent;
+		-webkit-text-stroke: 1px rgb(58, 58, 58);
+		font-weight: 500;
+		position: absolute;
+		top: 59%;
+		left: 30vw;
+		overflow: hidden;
+		font-size: 2em;
+	}
+
+	.typing-text-cursor {
+		display: inline-block;
+		width: 2px;
+		background-color: rgb(21, 21, 21);
+		animation: blink 1s infinite;
+	}
+
+	.typing-text-cursor.typing {
+		animation: none;
+	}
+
+	/* Desktop styles */
+	@media (min-width: 50em) {
+
+	}
+</style>

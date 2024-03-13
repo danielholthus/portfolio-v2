@@ -1,0 +1,33 @@
+---
+import EmailCTA from '../components/EmailCTA.astro'
+---
+<aside id="contact">
+	<h2><span class="highlight">Interested?</span> Let's work together!</h2>
+	<EmailCTA />
+</aside>
+
+<style lang="scss">
+	aside {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2.5rem;
+		padding: 5rem 1.5rem;
+		background-color: var(--bg-color-secondary);
+		isolation: isolate;
+		overflow-x: hidden;
+	}
+
+	h2 {
+		font-size: var(--text-xl);
+		text-align: center;
+		letter-spacing: 0.02em;
+	}
+
+	@media (min-width: 50em) {
+		h2 {
+			font-size: var(--text-3xl);
+		}
+	}
+</style>

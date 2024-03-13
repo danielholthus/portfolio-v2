@@ -1,0 +1,95 @@
+---
+
+---
+<div class="about-content">
+	<div class="about-text">
+		<div class="about-text-title">
+			<h1>I make shapes appear on the web.</h1>
+		</div>
+		<div class="about-text-body">
+			<p>Hey there! I'm Daniel - I'm a school-taught Software Engineer with a B.S. in Computer Science, and I am a self-taught web developer currently working as a Software Engineer and Dev Lead on the CX team at FloSports. So, I suppose to say <span style="color: #2b60ff;">"I make shapes appear on the web"</span> is an oversimplification of what I do, but it does make for a great tagline. I am very passionate about doing things the "right" way, and on every project I work on, I always strive to perfect my efficiency and productivity as a coder while also getting even the smallest details <em style="color: #2b60ff">just</em> right.</p>
+		</div>
+	</div>
+	<img class="headshot" src="./assets/headshot.png" alt="Headshot of Daniel Holthus">
+</div>
+
+<style lang="scss">
+	.about-content {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		margin: 2rem 0;
+	}
+
+	.about-text {
+		margin-top: -30px;
+	}
+
+	.about-text-title {
+		margin-bottom: 20px;
+		border: 1px solid #222222;
+		padding: 12px 30px;
+		background-color: #2b60ff;
+		border-radius: 20px;
+		text-align: center;
+		h1 {
+			color: var(--gray-900);
+			font-size: 8vw;
+		}
+	}
+
+	.about-text-body {
+		padding: 0 1rem;
+		font-size: 1.1rem;
+	}
+
+	.headshot {
+		width: 75%;
+		border: 2px solid #222222;
+		border-radius: 20px;
+		background-color: #e9e1dc;
+	}
+
+	/* Desktop styles */
+	@media (min-width: 54em) {
+
+		.about-text-title {
+			margin-bottom: 20px;
+			border: 1px solid #222222;
+			padding: 12px 30px;
+			background-color: #2b60ff;
+			border-radius: 20px;
+			text-align: start;
+			h1 {
+				color: var(--gray-900);
+				font-size: 4vw;
+			}
+		}
+		
+		.about-content {
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.about-text {
+			position: relative;
+			z-index: 2;
+			transform: translate(30px, 12px);
+			width: 50%;
+		}
+
+		.about-text-body {
+			padding: 0 5rem 0 2rem;
+			font-size: max(1.1rem, 1.5dvw);
+		}
+
+		.headshot {
+			position: relative;
+			transform: translateX(-30px);
+			width: 40%;
+			z-index: 1;
+		}
+	}
+
+</style>
