@@ -1,245 +1,248 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from "astro:content"
 
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro"
 
-import Contact from '../../components/Contact.astro';
+import Contact from "../../components/Contact.astro"
 
 interface Props {
-	entry: CollectionEntry<'case-studies'>;
+  entry: CollectionEntry<"case-studies">
 }
 
 // This is a dynamic route that generates a page for every Markdown file in src/content/
 // Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
 // https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
-	const caseStudies = await getCollection('case-studies');
-	return caseStudies.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+  const caseStudies = await getCollection("case-studies")
+  return caseStudies.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }))
 }
 
-const { entry } = Astro.props;
+const { entry } = Astro.props
 
 interface PortfolioItem {
-	title: string,
-	description: string,
-	categories: string[],
-	img: string,
-	img_alt?: string,
+  title: string
+  description: string
+  categories: string[]
+  img: string
+  img_alt?: string
 }
 ---
 
-<BaseLayout title={`Daniel Holthus - ${entry.data.title} Case Study`} description={entry.data.description} fixedNav>
-		<main class="wrapper">
-			<header class="stack justify-center">
-				<div class="title text-center">
-					<h1><span class="highlight">{entry.data.title}</span> Case Study</h1>
-				</div>
-			</header>
-			<div class="main-content">
-				<div class="card background-secondary">
-					<div class="details">
-						<div class="stack">
-							<h2>Overview</h2>
-							<p>{entry.data.description}</p>
-						</div>
-						<div class="stack">
-							<h2>Role</h2>
-							<p>{entry.data.role}</p>
-							<h2>Dates</h2>
-							<p>{entry.data.date}</p>
-						</div>
-					</div>
-				</div>
-				{
-					entry.data.items.map((item: PortfolioItem) => (
-						<div class="card background-secondary">
-							<div class="card-content">
-								<div class="project-text">
-									<h2 class="project-title highlight">{item.title}</h2>
-									<p class="project-body">{item.description}</p>
-									<div class="categories">
-										{
-											item.categories.map((category) => (
-												<span class="tag">{category}</span>
-											))
-										}
-									</div>
-								</div>
-								{item.img && <img src={item.img} alt={item.img_alt || ''} />}
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</main>
-		<Contact />
+<BaseLayout
+  title={`Daniel Holthus - ${entry.data.title} Case Study`}
+  description={entry.data.description}
+  fixedNav
+>
+  <main class="wrapper">
+    <header class="stack justify-center">
+      <div class="title text-center">
+        <h1><span class="highlight">{entry.data.title}</span> Case Study</h1>
+      </div>
+    </header>
+    <div class="main-content">
+      <div class="card background-secondary">
+        <div class="details">
+          <div class="stack">
+            <h2>Overview</h2>
+            <p>{entry.data.description}</p>
+          </div>
+          <div class="stack">
+            <h2>Role</h2>
+            <p>{entry.data.role}</p>
+            <h2>Dates</h2>
+            <p>{entry.data.date}</p>
+          </div>
+        </div>
+      </div>
+      {
+        entry.data.items.map((item: PortfolioItem) => (
+          <div class="card background-secondary">
+            <div class="card-content">
+              <div class="project-text">
+                <h2 class="project-title highlight">{item.title}</h2>
+                <p class="project-body">{item.description}</p>
+                <div class="categories">
+                  {item.categories.map((category) => (
+                    <span class="tag">{category}</span>
+                  ))}
+                </div>
+              </div>
+              {item.img && <img src={item.img} alt={item.img_alt || ""} />}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </main>
+  <Contact />
 </BaseLayout>
 
 <style lang="scss">
-	main {
-		border-bottom: 1px solid var(--gray-0);
-	}
-	header {
-		height: 90svh;
-		h1 {
-			font-size: max(8vw, var(--text-3xl));
-			font-weight: 600;
-			color: transparent;
-			-webkit-text-stroke: 1px var(--gray-0);
-		}
-	}
+  main {
+    border-bottom: 1px solid var(--gray-0);
+  }
+  header {
+    height: calc(100svh - 2rem);
+    h1 {
+      font-size: max(8vw, var(--text-3xl));
+      font-weight: 600;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--gray-0);
+    }
+  }
 
-	.main-content {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		margin-bottom: 1rem;
-		padding: 0 1rem;
-	}
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+  }
 
-	.card {
-		position: sticky;
-		top: 6rem;
-		position: -webkit-sticky;
-		border-radius: 2rem;
-		border: 2px solid var(--gray-0);
-		padding: 2rem;	
-		height: calc(90svh + 2rem);
-		overflow: hidden;
-		.card-content {
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-			align-items: center;
-		}
-		.project-text {
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			width: 100%;
-		}
-		.project-title {
-			font-size: min(8dvw, var(--text-2xl));
+  .card {
+    position: sticky;
+    top: 6rem;
+    position: -webkit-sticky;
+    border-radius: 2.5rem;
+    border: 2px solid var(--gray-0);
+    padding: 1.5rem 2rem;
+    height: calc(90vh + 2rem);
+    overflow: hidden;
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      align-items: center;
+    }
+    .project-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      width: 100%;
+    }
+    .project-title {
+      font-size: min(8dvw, var(--text-2xl));
+      text-wrap: nowrap;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      align-self: center;
+    }
+    .project-body {
+      font-size: min(4dvw, var(--text-md));
+      margin-bottom: 1rem;
+    }
+    img {
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow:
+        0px 4px 8px rgb(0 0 0 / 24%),
+        0px 24px 40px rgb(0 0 0 / 24%);
+      border: 1px solid var(--gray-0);
+      max-width: 100%;
+      max-height: 100%;
+      background-color: var(--gray-999);
+    }
 
-			text-wrap: nowrap;
-			font-weight: 600;
-			margin-bottom: 1rem;
-			align-self: center;
-		}
-		.project-body {
-			font-size: min(4dvw, var(--text-md));
-			margin-bottom: 1rem;
-		}
-		img {
-			object-fit: cover;
-			border-radius: 1rem;
-			box-shadow: 0px 4px 8px rgb(0 0 0 / 24%),0px 24px 40px rgb(0 0 0 / 24%);
-			border: 1px solid var(--gray-0);
-			max-width: 100%;
-			max-height: 100%;
-			background-color: var(--gray-999);
-		}
+    .categories {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      .tag {
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        background-color: var(--gray-0);
+        color: var(--gray-900);
+        font-size: min(3dvw, var(--text-sm));
+        font-weight: 600;
+        text-wrap: nowrap;
+      }
+    }
+  }
 
-		.categories {
-			display: flex;
-			gap: 1rem;
-			justify-content: center;
-			margin-bottom: 1rem;
-			.tag {
-				padding: 0.5rem 1rem;
-				border-radius: 1rem;
-				background-color: var(--gray-0);
-				color: var(--gray-900);
-				font-size: min(3dvw, var(--text-sm));
-				font-weight: 600;
-				text-wrap: nowrap;
-			}
-		}
-	}
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h2 {
+      font-size: min(18dvw, var(--text-2xl));
+    }
+    p {
+      font-size: min(4dvw, var(--text-md));
+      margin-bottom: 1rem;
+    }
+  }
 
-	.details {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		h2 {
-			font-size: min(20dvw, var(--text-3	xl));
-		}
-		p {
-			font-size: min(3.5dvw, var(--text-md));
-			margin-bottom: 1rem;
-		}
-	}
+  @media (min-width: 50em) {
+    .main-content {
+      gap: 3rem;
+      margin-bottom: 5rem;
+      padding: 0 5rem;
+    }
+    .card {
+      top: 9rem;
+      border-radius: 5rem;
+      padding: 0rem 3rem 6rem 3rem;
+      height: calc(90vh + 1rem);
+      .card-content {
+        flex-direction: row;
+        height: 100%;
+        align-items: center;
+      }
+      .project-title {
+        font-size: max(3vw, var(--text-2xl));
+        font-weight: 600;
+        margin-bottom: 2rem;
+        align-self: start;
+      }
+      .project-body {
+        font-size: 1.5dvw;
+        margin-bottom: 2rem;
+      }
+      img {
+        position: relative;
+        transform: translateX(4rem);
+        max-width: 52%;
+        max-height: 80%;
+      }
 
-	@media (min-width: 50em) {	
-		.main-content {
-			gap: 3rem;
-			margin-bottom: 5rem;
-			padding: 0 5rem;
-		}
-		.card {
-			top: 9rem;
-			border-radius: 5rem;
-			padding: 0rem 3rem 6rem 3rem;	
-			height: calc(90svh + 1rem);
-			.card-content {
-				flex-direction: row;
-				height: 100%;
-				align-items: center;
-			}
-			.project-title {
-				font-size: max(3vw, var(--text-2xl));
-				font-weight: 600;
-				margin-bottom: 2rem;
-				align-self: start;
-			}
-			.project-body {
-				font-size: 1.5dvw;
-				margin-bottom: 2rem;
-			}
-			img {
-				position: relative;
-				transform: translateX(4rem);
-				max-width: 52%;
-				max-height: 80%;
-			}
-
-			.categories {
-				display: flex;
-				gap: 1rem;
-				justify-content: start;
-				.tag {
-					padding: 0.5rem 1rem;
-					border-radius: 1rem;
-					background-color: var(--gray-0);
-					color: var(--gray-900);
-					font-size: var(--text-sm);
-					font-weight: 600;
-				}
-			}
-		}
-		.details {
-			justify-content: space-around;
-			flex-direction: row;
-			padding-top: 5rem;
-			p {
-				font-size: max(1.5vw, var(--text-md));
-			}
-			div {
-				gap: 0.5rem;
-			}
-			div:first-child {
-				padding-right: 3rem;
-				width: 60%;
-			}
-			div:last-child {
-				width: 40%;
-				p {
-					margin-bottom: 2rem;
-				}
-			}
-		}
-	}
+      .categories {
+        display: flex;
+        gap: 1rem;
+        justify-content: start;
+        .tag {
+          padding: 0.5rem 1rem;
+          border-radius: 1rem;
+          background-color: var(--gray-0);
+          color: var(--gray-900);
+          font-size: var(--text-sm);
+          font-weight: 600;
+        }
+      }
+    }
+    .details {
+      justify-content: space-around;
+      flex-direction: row;
+      padding-top: 5rem;
+      p {
+        font-size: max(1.5vw, var(--text-md));
+      }
+      div {
+        gap: 0.5rem;
+      }
+      div:first-child {
+        padding-right: 3rem;
+        width: 60%;
+      }
+      div:last-child {
+        width: 40%;
+        p {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
 </style>
