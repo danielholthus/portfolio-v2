@@ -72,9 +72,8 @@ const projects = (await getCollection("work"))
     background-color: var(--bg-color-secondary);
     position: relative;
     .section {
-      border-radius: 5rem;
-      border: 1px solid var(--gray-0);
-      min-height: 100svh;
+      border-radius: 4rem;
+      border: 2px solid var(--gray-0);
     }
   }
 
@@ -107,6 +106,10 @@ const projects = (await getCollection("work"))
     z-index: -2;
 	}
 
+  #projects, #about, #contact {
+    scroll-margin-top: 6rem;
+  }
+
   @media (min-width: 50em) {
     .section {
       padding: 3rem 1.5rem;
@@ -114,8 +117,10 @@ const projects = (await getCollection("work"))
       grid-template-areas: "header header header header" "content content content content";
     }
 
-    .section.with-cta {
-      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
+    .wrapper.about {
+      .section {
+        border-radius: 5rem;
+      }
     }
 
     .section-header {
@@ -138,6 +143,9 @@ const projects = (await getCollection("work"))
 
     .curved-line {
       top: 50%;
+    }
+    #projects, #about, #contact {
+      scroll-margin-top: 9rem;
     }
   }
 </style>

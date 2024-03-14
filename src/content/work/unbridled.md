@@ -4,7 +4,7 @@ action_url: 'https://www.unbridled.com/'
 cta_text: 'Click to see company site'
 img: '/assets/unbridled.png'
 img_alt: 'Unbridled Solutions logo'
-order: 2
+order: 3
 cardText: [
   {
     header: 'Unbridled',

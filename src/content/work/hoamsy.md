@@ -4,7 +4,7 @@ action_url: '/case-studies/hoamsy/'
 cta_text: 'Click to see case study'
 img: '/assets/hoamsy.png'
 img_alt: 'Hoamsy logo'
-order: 3
+order: 2
 cardText: [
   {
     header: 'Hoamsy',

@@ -2,7 +2,7 @@
 import Icon from "../components/Icon.astro"
 ---
 <div class="contact-email">
-	<div class="email-hover"><span>Click to copy</span></div>
+	<div class="email-hover" tabindex="0"><span>Click to copy</span></div>
 	<div class="email-icon">
 		<Icon icon="paper-plane-tilt" size="1.6em" />
 	</div>
@@ -11,20 +11,41 @@ import Icon from "../components/Icon.astro"
 </div>
 
 <script>
-	document.querySelector('.contact-email')!.addEventListener('click', () => {
-		const hoverElement = document.querySelector('.email-hover')!
+	function hasTouchScreen(): boolean {
+		//@ts-ignore ts doesn't know about navigator.maxTouchPoints
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+	}
+
+	function applyEmailHoverClickInteraction() {
+		const hoverElement = document.querySelector<HTMLElement>('.email-hover')!
 		const email = document.querySelector('.email-address span')!.innerHTML
 		navigator.clipboard.writeText(email)
 		hoverElement.innerHTML = 'Copied!'
-		setTimeout(() => {
-			hoverElement.innerHTML = 'Click to copy'
-		}, 2000)
+		if (hasTouchScreen()) {
+			hoverElement.style.opacity = '0.98'
+			setTimeout(() => {
+				hoverElement.style.opacity = '0'
+			}, 2000)
+		} else {
+			setTimeout(() => {
+				hoverElement.innerHTML = 'Click to copy'
+			}, 2000)
+		}
 		// @ts-ignore, function pulled from the script below
 		confetti({
         spread: 200,
         origin: { y: 0.75 }
     })
+	}
+
+	const contactEmail = document.querySelector('.contact-email')!
+	contactEmail.addEventListener('click', applyEmailHoverClickInteraction)
+	contactEmail.addEventListener('keypress', function (e) {
+    if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
+			applyEmailHoverClickInteraction()
+		}
 	})
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
@@ -58,9 +79,8 @@ import Icon from "../components/Icon.astro"
 		transition: opacity 0.1s;
 	}
 
-	.contact-email:hover .email-hover {
+	.email-hover:hover, .email-hover:focus {
 		opacity: 0.98;
-
 	}
 
 	.email-icon {

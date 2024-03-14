@@ -11,7 +11,7 @@
       <p>
         Hey there! I'm Daniel - I'm a school-taught Software Engineer with a
         B.S. in Computer Science, and I am a self-taught web developer currently
-        working as a Software Engineer and Dev Lead on the CX team at FloSports.
+        working as a Software Engineer and Dev Lead on the web application team at FloSports.
         So, I suppose to say <span style="color: #2b60ff;"
           >"I make shapes appear on the web"</span
         > is an oversimplification of what I do, but it does make for a great tagline.
@@ -35,7 +35,6 @@
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    margin: 2rem 0;
   }
 
   .about-text {
@@ -51,7 +50,7 @@
     text-align: center;
     h1 {
       color: var(--gray-900);
-      font-size: 8vw;
+      font-size: 5vw;
     }
   }
 
@@ -61,8 +60,8 @@
   }
 
   .headshot {
-		position: relative;
-		z-index: -1;
+    position: relative;
+    z-index: -1;
     width: 75%;
     border: 2px solid #222222;
     border-radius: 20px;
@@ -70,7 +69,7 @@
   }
 
   /* Desktop styles */
-  @media (min-width: 54em) {
+  @media (min-width: 40em) {
     .about-text-title {
       margin-bottom: 20px;
       border: 1px solid #222222;
@@ -80,7 +79,7 @@
       text-align: start;
       h1 {
         color: var(--gray-900);
-        font-size: 4vw;
+        font-size: 3.3vw;
       }
     }
 
@@ -88,22 +87,23 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      margin: 2rem 0;
     }
 
     .about-text {
       position: relative;
       transform: translate(30px, 12px);
-      width: 50%;
+      width: 60%;
     }
 
     .about-text-body {
       padding: 0 5rem 0 2rem;
-      font-size: max(1.1rem, 1.5dvw);
+      font-size: 1.5vw;
     }
 
     .headshot {
       transform: translateX(-30px);
-      width: 40%;
+      width: max(35%, 300px);
     }
   }
 </style>

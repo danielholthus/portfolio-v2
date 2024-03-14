@@ -2,12 +2,6 @@
 import Icon from './Icon.astro';
 import type { iconPaths } from './IconPaths';
 
-interface Props {
-	fixedNav?: boolean
-}
-
-const { fixedNav = false } = Astro.props;
-
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
 	{ label: 'Work', href: '/#projects' },
@@ -22,10 +16,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 ];
 ---
 
-<nav class={fixedNav ? 'fixed' : ''}>
+<nav>
 	<div class="menu-header" id="menu-header">
 		<a href="/#home" class="site-title">
-			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" blend gradient />
+			<Icon icon="terminal-window" color="var(--accent-regular)" size="2em" blend gradient />
 			dh.
 		</a>
 		<menu-button>
@@ -168,6 +162,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		line-height: 1.1;
 		color: var(--gray-0);
 		text-decoration: none;
+		font-size: var(--text-xl);
 	}
 
 	.menu-button {
@@ -176,16 +171,15 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		border: 0;
 		border-radius: 999rem;
 		padding: 0.5rem;
-		font-size: 1.5rem;
-		color: var(--gray-300);
-		background: radial-gradient(var(--gray-900), var(--gray-800) 150%);
-		box-shadow: var(--shadow-md);
+		font-size: 2rem;
+		color: var(--gray-0);
+		background: var(--gray-999);
 	}
 
 	.menu-button[aria-expanded='true'] {
-		color: var(--gray-0);
-		background: linear-gradient(180deg, var(--gray-600), transparent),
-			radial-gradient(var(--gray-900), var(--gray-800) 150%);
+		color: var(--gray-999);
+		background: var(--gray-0);
+		box-shadow: none;
 	}
 
 	.menu-button[hidden] {
@@ -212,7 +206,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		font-size: var(--text-md);
+		font-size: var(--text-xl);
 		line-height: 1.2;
 		list-style: none;
 		padding: 2rem;
@@ -255,12 +249,11 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		padding: var(--icon-padding);
 		text-decoration: none;
 		color: var(--gray-0);
-		transition: color var(--theme-transition);
 	}
 
 	.social:hover,
 	.social:focus {
-		color: var(--accent-regular);
+		color: var(--gray-0);
 	}
 
 	.menu-exit {
@@ -269,14 +262,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 
 	@media (min-width: 50em) {
 		nav {
-			position: absolute;
 			display: grid;
 			grid-template-columns: 1fr auto 1fr;
 			align-items: center;
 			padding: 2.5rem 3.8rem;
-			&.fixed {
-				position: fixed;
-			}
 		}
 
 		.menu-header {
@@ -313,7 +302,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		.link:hover,
 		.link:focus {
 			outline: 1px solid var(--gray-0);
-			color: var(--gray-100);
 			background-color: var(--accent-subtle-overlay);
 		}
 

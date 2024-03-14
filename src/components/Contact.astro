@@ -23,6 +23,10 @@ import EmailCTA from '../components/EmailCTA.astro'
 		font-size: var(--text-xl);
 		text-align: center;
 		letter-spacing: 0.02em;
+		.highlight::before {
+			left: -0.5rem;
+			width: calc(100% + 0.7rem);
+		}
 	}
 
 	@media (min-width: 50em) {
