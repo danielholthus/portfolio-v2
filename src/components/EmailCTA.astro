@@ -2,7 +2,7 @@
 import Icon from "../components/Icon.astro"
 ---
 <div class="contact-email">
-	<div class="email-hover" tabindex="0"><span class="hide-on-mobile">Click to copy</span></div>
+	<div class="email-hover" tabindex="0"></div>
 	<div class="email-icon">
 		<Icon icon="paper-plane-tilt" size="1.6em" />
 	</div>
@@ -42,6 +42,8 @@ import Icon from "../components/Icon.astro"
 			applyEmailClickInteraction()
 		}
 	})
+	// run this on load, will set the hover text to "Click to copy" if not on a touch screen
+	applyEmailMouseOutInteraction()
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
@@ -73,9 +75,6 @@ import Icon from "../components/Icon.astro"
 		color: var(--gray-999);
 		font-weight: 700;
 		font-size: 1.5rem;
-		.hide-on-mobile {
-			display: none;
-		}
 	}
 
 	// Allows for hovering over "Click Me" icon to show the CTA
@@ -113,12 +112,4 @@ import Icon from "../components/Icon.astro"
 		transform: translate(-50%, 50%);
 		animation: rotate linear 15s infinite;
 	}
-
-	@media (min-width: 50em) {
-		.email-hover {
-			.hide-on-mobile {
-				display: block;
-			}
-		}
-  }
 </style>
