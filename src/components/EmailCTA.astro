@@ -2,7 +2,7 @@
 import Icon from "../components/Icon.astro"
 ---
 <div class="contact-email">
-	<div class="email-hover" tabindex="0"><span>Click to copy</span></div>
+	<div class="email-hover" tabindex="0"><span class="hide-on-mobile">Click to copy</span></div>
 	<div class="email-icon">
 		<Icon icon="paper-plane-tilt" size="1.6em" />
 	</div>
@@ -16,21 +16,16 @@ import Icon from "../components/Icon.astro"
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
 	}
 
-	function applyEmailHoverClickInteraction() {
+	function applyEmailMouseOutInteraction() {
+		const hoverElement = document.querySelector<HTMLElement>('.email-hover')!
+		if (!hasTouchScreen()) hoverElement.innerHTML = 'Click to copy'
+	}
+
+	function applyEmailClickInteraction() {
 		const hoverElement = document.querySelector<HTMLElement>('.email-hover')!
 		const email = document.querySelector('.email-address span')!.innerHTML
 		navigator.clipboard.writeText(email)
 		hoverElement.innerHTML = 'Copied!'
-		if (hasTouchScreen()) {
-			hoverElement.style.opacity = '0.98'
-			setTimeout(() => {
-				hoverElement.style.opacity = '0'
-			}, 2000)
-		} else {
-			setTimeout(() => {
-				hoverElement.innerHTML = 'Click to copy'
-			}, 2000)
-		}
 		// @ts-ignore, function pulled from the script below
 		confetti({
         spread: 200,
@@ -38,18 +33,20 @@ import Icon from "../components/Icon.astro"
     })
 	}
 
-	const contactEmail = document.querySelector('.contact-email')!
-	contactEmail.addEventListener('click', applyEmailHoverClickInteraction)
-	contactEmail.addEventListener('keypress', function (e) {
+	const ctaElement = document.querySelector<HTMLElement>('.contact-email')!
+	ctaElement.addEventListener('click', applyEmailClickInteraction)
+	ctaElement.addEventListener('mouseleave', applyEmailMouseOutInteraction)
+	ctaElement.addEventListener('focusout', applyEmailMouseOutInteraction)
+	ctaElement.addEventListener('keypress', function (e) {
     if ((e as KeyboardEvent).key === 'Enter' || (e as KeyboardEvent).key === ' ') {
-			applyEmailHoverClickInteraction()
+			applyEmailClickInteraction()
 		}
 	})
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
-<style>
+<style lang="scss">
 	.contact-email {
 		position: relative;
 		display: flex;
@@ -76,10 +73,13 @@ import Icon from "../components/Icon.astro"
 		color: var(--gray-999);
 		font-weight: 700;
 		font-size: 1.5rem;
-		transition: opacity 0.1s;
+		.hide-on-mobile {
+			display: none;
+		}
 	}
 
-	.email-hover:hover, .email-hover:focus-visible {
+	// Allows for hovering over "Click Me" icon to show the CTA
+	.contact-email:hover .email-hover, .email-hover:hover, .email-hover:focus-visible {
 		opacity: 0.98;
 	}
 
@@ -114,5 +114,11 @@ import Icon from "../components/Icon.astro"
 		animation: rotate linear 15s infinite;
 	}
 
-	
+	@media (min-width: 50em) {
+		.email-hover {
+			.hide-on-mobile {
+				display: block;
+			}
+		}
+  }
 </style>

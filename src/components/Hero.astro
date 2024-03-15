@@ -61,6 +61,8 @@
 			var randomColorOne = '#' + Math.floor(Math.random()*16777215).toString(16); // Generating a random hex color
 
 			letter.style.color = randomColorOne;
+			// @ts-ignore-error
+			letter.style['-webkit-text-stroke'] = '2px black';
 		})
 	})
 </script>
@@ -134,14 +136,13 @@
 	.hero-title {
 		font-size: 12vw;
 		color: var(--gray-0);
-		-webkit-text-stroke: 2px var(--gray-0);
-		font-weight: 400;
 		& > span {
 			cursor: pointer;
 			-webkit-user-select: none; 
 			user-select: none;
 			&:hover {
 				color: transparent;
+				-webkit-text-stroke: 2px var(--gray-0);
 			}
 		}
 	}
