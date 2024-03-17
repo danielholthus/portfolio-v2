@@ -1,34 +1,43 @@
 ---
+interface Props {
+	title?: string;
+}
 
+const { title } = Astro.props;
 ---
 <div class="hero gap-4 full-height">
 	<div id="hero-square"></div>
 	<div id="hero-circle"></div>
 	<div id="hero-corner"></div>
 	<div class="hero-text">
-		<h1 class="hero-title highlight"><span>d</span><span>a</span><span>n</span><span>i</span><span>e</span><span>l</span>&nbsp<span>h</span><span>o</span><span>l</span><span>t</span><span>h</span><span>u</span><span>s</span></h1>
-		<div id="typing-text-container">
-			<span>
-				<span class="typing-text"></span>
-				<span class="typing-text-cursor">&nbsp</span>
-			</span>
-		</div>
+		{
+			title 
+				?	<h1 class="hero-title highlight">{title}</h1> 
+				: <h1 class="hero-title highlight letter-spans-container"><span>d</span><span>a</span><span>n</span><span>i</span><span>e</span><span>l</span>&nbsp<span>h</span><span>o</span><span>l</span><span>t</span><span>h</span><span>u</span><span>s</span></h1>
+					<div id="typing-text-container">
+						<span>
+							<span class="typing-text"></span>
+							<span class="typing-text-cursor">&nbsp</span>
+						</span>
+					</div>
+		}
+		
 	</div>
 </div>
 
 <script>
 	/* Typing text effect */
-	const typedTextSpan = document.querySelector('.typing-text')!
-	const cursorSpan = document.querySelector(".typing-text-cursor")!
-	const textArray = ["full-stack software engineer", "dev lead", "computer science graduate", "coffee overconsumer"]
+	const typedTextSpan = document.querySelector<HTMLElement>('.typing-text')!
+	const cursorSpan = document.querySelector<HTMLElement>(".typing-text-cursor")!
+	const textArray = ["frontend software engineer", "dev lead", "computer science graduate", "coffee overconsumer"]
 	const typingDelay = 70
 	const erasingDelay = 35
 	const newTextDelay = 1500
 	let textArrayIndex = 0
 	let charIndex = 0
 	function erase() {
-		if (charIndex > 0) {
-			if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing")
+		if (charIndex > 0 && !!cursorSpan && !!typedTextSpan) {
+			if (!cursorSpan.classList.contains("typing")) cursorSpan?.classList.add("typing")
 			typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1)
 			charIndex--
 			setTimeout(erase, erasingDelay)
@@ -47,15 +56,17 @@
 			setTimeout(type, typingDelay)
 		} else {
 			cursorSpan!.classList.remove("typing")
-			setTimeout(erase, newTextDelay);
+			setTimeout(erase, newTextDelay)
 		}
 	}
 	document.addEventListener("DOMContentLoaded", function () {
-		setTimeout(type, 1000);
+		if (!!cursorSpan && !!typedTextSpan) {
+			setTimeout(type, 1000)
+		}
 	})
 
 	/* Header Letter Effect */ 
-	const letters = document.querySelectorAll<HTMLElement>('.hero-title span')
+	const letters = document.querySelectorAll<HTMLElement>('.letter-spans-container span')
 	letters.forEach((letter) => {
 		letter.addEventListener('click', () => {
 			var randomColorOne = '#' + Math.floor(Math.random()*16777215).toString(16); // Generating a random hex color
