@@ -23,7 +23,7 @@ const projects = (await getCollection("work"))
       <Hero />
     </div>
     <main class="wrapper stack">
-      <section class="section background-secondary" id="projects">
+      <section class="section background-secondary projects" id="projects">
         <header class="section-header stack gap-2 lg:gap-4">
           <h3>Projects & Work History</h3>
         </header>
@@ -56,6 +56,14 @@ const projects = (await getCollection("work"))
 </BaseLayout>
 
 <style lang="scss">
+  @media (max-width: 20em) {
+    .section {
+      &.projects {
+        padding: 0;
+        padding: 2rem 0;
+      }
+    }
+  }
   .roles {
     display: none;
   }

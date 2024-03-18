@@ -71,6 +71,7 @@ const { project } = Astro.props;
 		gap: 1rem;
 		height: 100%;
 		.card-text-header {
+			text-wrap: nowrap;
 			z-index: -1;
 			font-size: var(--text-xl);
 			font-weight: 600;
@@ -81,7 +82,7 @@ const { project } = Astro.props;
 		}
 		.cta {
 			p {
-				font-size: var(--text-md);
+				font-size: 4vw;
 				font-weight: 600;
 				color: var(--accent-regular);
 			}
@@ -143,6 +144,14 @@ const { project } = Astro.props;
 
 		.banner {
 			display: block;
+		}
+
+		.card-on-hover {
+			.cta {
+				p {
+					font-size: var(--text-lg);
+				}
+			}
 		}
 	}
 </style>
