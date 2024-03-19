@@ -18,7 +18,7 @@ items: [
   },
   {
     title: 'Payments',
-    description: 'Helped implement on a new frontend payment and subscription schema that was crafted to leverage brand new internal subscription microservices. This allowed us to achieve greater flexibility within our pricing model, paving the way for all new pricing methods such as pay-per-view and tier-based subscription models.',
+    description: 'Helped implement a new frontend payment and subscription schema that was crafted to leverage brand new internal subscription microservices. This allowed us to achieve greater flexibility within our pricing model, paving the way for all new pricing methods such as pay-per-view and tier-based subscription models.',
     img: '/assets/case-studies/flosports/payments.png',
     categories: ['Frontend', '3rd Party Integrations']
   },
