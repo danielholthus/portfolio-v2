@@ -12,7 +12,7 @@ cardText: [
   },
   {
     header: My Role,
-    body: 'Web Developer'
+    body: 'Freelance Web Developer'
   },
   {
     header: 'Tech that I used',
