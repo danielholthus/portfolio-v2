@@ -1,7 +1,7 @@
 ---
 title: 'FloSports'
 description: 'At FloSports, I have had the pleasure of working on a very wide range of projects in the data-rich, multi-tenant platform architecture that drives our web application experiences from helping implement brand new, platform-wide payments systems to architecting and developing new global navigation structures. Below are a just a few personal favorite projects that I have gotten to work on during my time at FloSports.'
-date: 'September 2022 - Present'
+date: 'September 2022 - January 2025'
 role: 'Fullstack Software Engineer & Dev Lead'
 items: [
   {

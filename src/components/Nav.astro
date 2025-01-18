@@ -163,6 +163,10 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		color: var(--gray-0);
 		text-decoration: none;
 		font-size: var(--text-xl);
+		transition: transform linear 50ms;
+		&:hover {
+			transform: rotate(7deg);
+		}
 	}
 
 	.menu-button {
