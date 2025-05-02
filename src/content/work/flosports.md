@@ -8,14 +8,14 @@ order: 1
 cardText: [
   {
     header: 'FloSports',
-    body: 'Building digital products at a world-class sports media company'
+    body: 'Built digital products at a world-class sports media company'
   },
   {
     header: My Role,
     body: 'Fullstack Software Engineer & Dev Lead'
   },
   {
-    header: 'Tech that I use',
+    header: 'Tech that I used',
     body: 'Angular, Typescript, RxJS, Nest.js, Segment, Jest, Cypress, Storybook, Github'
   },
 ]
