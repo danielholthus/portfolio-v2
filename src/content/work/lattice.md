@@ -12,7 +12,7 @@ cardText: [
   },
   {
     header: 'My Role',
-    body: 'Full Stack Software Engineer'
+    body: 'Fullstack Software Engineer'
   },
   {
     header: 'Tech that I use',

@@ -2,7 +2,7 @@
 title: 'Hoamsy'
 description: 'My contributions at Hoamsy included many projects ranging from refactoring existing aspects of the platform’s UI, to implementing brand new features on the site. While at Hoamsy, I had significant exposure to tools such as source control (Github), Vue.js, Figma, and NoSQL databases. Below are just a few of the projects I worked on during my time there.'
 date: 'September 2020 - February 2021'
-role: 'Full-Stack Software Engineer Intern'
+role: 'Fullstack Software Engineer Intern'
 items: [
   {
     title: 'Home Page',
