@@ -17,7 +17,24 @@ export const collections = {
 			),
 		}),
 	}),
-	caseStudies: defineCollection({
+	work: defineCollection({
+		type: 'content',
+		schema: z.object({
+			title: z.string(),
+			action_url: z.string(),
+			cta_text: z.string(),
+			img: z.string(),
+			img_alt: z.string().optional(),
+			order: z.number(),
+			cardText: z.array(
+				z.object({
+					header: z.string(),
+					body: z.string(),
+				})
+			),
+		}),
+	}),
+	'case-studies': defineCollection({
 		type: 'content',
 		schema: z.object({
 			title: z.string(),

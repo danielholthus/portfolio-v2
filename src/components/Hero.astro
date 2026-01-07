@@ -26,6 +26,11 @@ const { title } = Astro.props;
 </div>
 
 <script>
+	import { gsap } from 'gsap'
+	import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+	gsap.registerPlugin(ScrollTrigger)
+
 	/* Typing text effect */
 	const typedTextSpan = document.querySelector<HTMLElement>('.typing-text')!
 	const cursorSpan = document.querySelector<HTMLElement>(".typing-text-cursor")!
@@ -74,6 +79,46 @@ const { title } = Astro.props;
 			letter.style.color = randomColorOne;
 			// @ts-ignore-error
 			letter.style['-webkit-text-stroke'] = '2px black';
+		})
+	})
+
+	/* GSAP Scroll Animation for Letters */
+	document.addEventListener("DOMContentLoaded", function () {
+		const letterElements = document.querySelectorAll<HTMLElement>('.letter-spans-container span')
+		
+		// Define fun animation directions for each letter (13 letters: d-a-n-i-e-l-h-o-l-t-h-u-s)
+		const directions = [
+			{ x: -20, y: -50, rotation: -35 }, // d
+			{ x: 70, y: -70, rotation: 40 },   // a
+			{ x: -50, y: 60, rotation: -25 },  // n
+			{ x: 20, y: 40, rotation: 35 },   // i
+			{ x: -40, y: -60, rotation: -40 }, // e
+			{ x: 50, y: 70, rotation: -10 },   // l
+			{ x: -20, y: -40, rotation: -30 }, // h
+			{ x: 20, y: -50, rotation: 38 },   // o
+			{ x: -50, y: 60, rotation: 20 },  // l
+			{ x: 60, y: -70, rotation: 40 },   // t
+			{ x: -20, y: 50, rotation: -30 },  // h
+			{ x: 50, y: -60, rotation: 30 },   // u
+			{ x: -60, y: 40, rotation: -40 },  // s
+		]
+
+		letterElements.forEach((letter, index) => {
+			const direction = directions[index] || { x: 0, y: 0, rotation: 0 }
+			
+			gsap.to(letter, {
+				x: direction.x,
+				y: direction.y,
+				rotation: direction.rotation,
+				scale: 0.9,
+				ease: "power3.out",
+				scrollTrigger: {
+					trigger: ".hero",
+					start: "top top",
+					end: "bottom top",
+					scrub: 0.3,
+				}
+			})
 		})
 	})
 </script>
@@ -151,6 +196,8 @@ const { title } = Astro.props;
 			cursor: pointer;
 			-webkit-user-select: none; 
 			user-select: none;
+			display: inline-block;
+			transform-origin: center center;
 			&:hover {
 				color: transparent;
 				-webkit-text-stroke: 2px var(--gray-0);

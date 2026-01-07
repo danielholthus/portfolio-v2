@@ -16,7 +16,7 @@ cardText: [
   },
   {
     header: 'Tech that I used',
-    body: 'Angular, Typescript, RxJS, Nest.js, Segment, Jest, Cypress, Storybook, Github'
+    body: 'Angular, Typescript, RxJS, Nest.js, Segment, Jest, Cypress, DataDog, Storybook, Github'
   },
 ]
 ---
