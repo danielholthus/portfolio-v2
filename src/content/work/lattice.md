@@ -16,7 +16,7 @@ cardText: [
   },
   {
     header: 'Tech that I use',
-    body: 'React, Typescript, GraphQL, Nest.js, Claude Code, Jest, AWS, DataDog, Storybook, Github, and a lot more'
+    body: 'React, Typescript, GraphQL, PostgreSQL, Nest.js, Claude Code, Temporal, Jest, AWS, DataDog, Storybook, Github'
   },
 ]
 ---
