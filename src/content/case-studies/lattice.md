@@ -1,6 +1,6 @@
 ---
 title: 'Lattice'
-description: 'At Lattice, I worked on core product experiences within a highly scaled, data-driven people management platform used by teams across the globe. My work focused on building and evolving complex React and GraphQL-powered interfaces, partnering closely with product and design to translate ambiguous requirements into thoughtful, reliable solutions. Many of the products I contributed to directly supported critical business workflows and a large portion of the company’s revenue. Below is a non-exhaustive list of a few selected projects that highlight the type of work I enjoyed most during my time at Lattice.'
+description: 'At Lattice, I am working on core product experiences within a highly scaled, data-driven people management platform used by teams across the globe. My work focuses on building and evolving complex React and GraphQL-powered interfaces, partnering closely with product and design to translate ambiguous requirements into thoughtful, reliable solutions. Many of the products I contribute to directly supported critical business workflows and a large portion of the company’s revenue. Below is a non-exhaustive list of a few selected projects that highlight the type of work I have enjoyed most so far.'
 date: 'February 2025 - Present'
 role: 'Fullstack Software Engineer'
 items: [
