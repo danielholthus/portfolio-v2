@@ -4,7 +4,7 @@ action_url: '/case-studies/lattice'
 cta_text: 'Click to see case study'
 img: '/assets/lattice.png'
 img_alt: 'Lattice logo'
-order: 0
+order: 1
 cardText: [
   {
     header: 'Lattice',
@@ -12,11 +12,11 @@ cardText: [
   },
   {
     header: 'My Role',
-    body: 'Fullstack Software Engineer'
+    body: 'Senior Software Engineer'
   },
   {
     header: 'Tech that I use',
-    body: 'React, Typescript, GraphQL, PostgreSQL, Nest.js, Claude Code, Temporal, Jest, AWS, DataDog, Storybook, Github'
+    body: 'React, Typescript, GraphQL, Postgres, Nest.js, Claude Code, Temporal, Jest, AWS, DataDog, Storybook, Github'
   },
 ]
 ---

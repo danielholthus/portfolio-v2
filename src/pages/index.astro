@@ -13,8 +13,13 @@ import PortfolioPreview from "../components/PortfolioPreview.astro"
 // Page section components
 import Contact from "../components/Contact.astro"
 
-const projects = (await getCollection("work"))
+const workHistorySlugs = ["flosports", "lattice", "hoamsy"]
+
+const allWork = (await getCollection("work"))
   .sort((a, b) => a.data.order - b.data.order)
+
+const projects = allWork.filter((entry) => !workHistorySlugs.includes(entry.slug))
+const workHistory = allWork.filter((entry) => workHistorySlugs.includes(entry.slug))
 ---
 
 <BaseLayout>
@@ -23,9 +28,25 @@ const projects = (await getCollection("work"))
       <Hero />
     </div>
     <main class="wrapper stack">
+      <section class="section background-secondary projects" id="work-history">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <h3>Work History</h3>
+        </header>
+        <div class="section-content">
+          <Grid variant="offset">
+            {
+              workHistory.map((project) => (
+                <li>
+                  <PortfolioPreview project={project} />
+                </li>
+              ))
+            }
+          </Grid>
+        </div>
+      </section>
       <section class="section background-secondary projects" id="projects">
         <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Projects & Work History</h3>
+          <h3>Projects</h3>
         </header>
         <div class="section-content">
           <Grid variant="offset">
@@ -92,6 +113,14 @@ const projects = (await getCollection("work"))
     padding: 2rem;
   }
 
+  .section.projects + .section.projects {
+    padding-top: 0;
+  }
+
+  #work-history :global(.grid.offset) {
+    padding-bottom: 0;
+  }
+
   .section-header {
 		justify-self: center;
 		text-align: center;
@@ -115,7 +144,7 @@ const projects = (await getCollection("work"))
     z-index: -2;
 	}
 
-  #projects, #about, #contact {
+  #projects, #work-history, #about, #contact {
     scroll-margin-top: 6rem;
   }
 
@@ -154,7 +183,7 @@ const projects = (await getCollection("work"))
     .curved-line {
       top: 50%;
     }
-    #projects, #about, #contact {
+    #projects, #work-history, #about, #contact {
       scroll-margin-top: 9rem;
     }
   }

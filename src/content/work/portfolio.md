@@ -4,7 +4,7 @@ action_url: 'https://github.com/danielholthus/portfolio-v2'
 cta_text: 'Click to see the project code'
 img: '/assets/portfolio.png'
 img_alt: 'Screenshots of past portfolio project homepage renditions'
-order: 4
+order: 5
 cardText: [
   {
     header: 'Portfolio Site',
