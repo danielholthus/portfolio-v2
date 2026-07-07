@@ -5,6 +5,12 @@ date: 'February 2025 - Present'
 role: 'Senior Software Engineer'
 items: [
   {
+    title: 'Group Meetings',
+    description: 'An expansion of Lattice Meetings beyond 1:1s, bringing stand-ups, project check-ins, ad-hoc calls, and more into one structured experience, providing AI-powered recaps, generating action items and talking points, and assigning them to the right people. I led the backend core logic layer, building the primary product backend powering the new group meetings product, partnering with product, design, and frontend engineers to deliver reliable, scalable platform support.',
+    img: '/assets/case-studies/lattice/group-meetings.webp',
+    categories: ['Frontend', 'Backend', 'AI']
+  },
+  {
     title: 'Goals Product Refresh',
     description: 'A full redesign and rebuild of Lattice’s Goals product, focused on improving clarity, usability, and performance across core goal-tracking workflows. I worked full-stack and partnered closely with product and design to translate a broad vision into a cohesive, modernized experience, delivering a foundational refresh that better supported how teams set, track, and align on goals.',
     img: '/assets/case-studies/lattice/goals-product-refresh.webp',
