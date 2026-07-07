@@ -1,33 +1,33 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content"
+import { type CollectionEntry, getCollection } from "astro:content";
 
-import BaseLayout from "../../layouts/BaseLayout.astro"
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-import Contact from "../../components/Contact.astro"
+import Contact from "../../components/Contact.astro";
 
 interface Props {
-  entry: CollectionEntry<"case-studies">
+  entry: CollectionEntry<"case-studies">;
 }
 
 // This is a dynamic route that generates a page for every Markdown file in src/content/
 // Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
 // https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
-  const caseStudies = await getCollection("case-studies")
+  const caseStudies = await getCollection("case-studies");
   return caseStudies.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
-  }))
+  }));
 }
 
-const { entry } = Astro.props
+const { entry } = Astro.props;
 
 interface PortfolioItem {
-  title: string
-  description: string
-  categories: string[]
-  img: string
-  img_alt?: string
+  title: string;
+  description: string;
+  categories: string[];
+  img: string;
+  img_alt?: string;
 }
 ---
 
@@ -87,9 +87,14 @@ interface PortfolioItem {
     height: calc(100vh - 4rem);
     h1 {
       font-size: max(8vw, var(--text-3xl));
-      font-weight: 600;
+      font-weight: 500;
       color: transparent;
       -webkit-text-stroke: 1px var(--gray-0);
+
+      .highlight {
+        color: var(--gray-0);
+        -webkit-text-stroke: 0;
+      }
     }
   }
 
