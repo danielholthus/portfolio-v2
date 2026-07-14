@@ -1,13 +1,13 @@
 ---
-title: 'Ballboy (In Progress)'
-action_url: 'https://tennis-app--staging.expo.app/'
+title: 'Vollie (In Progress)'
+action_url: 'https://vollie.expo.app/'
 cta_text: 'Click to see the app'
-img: '/assets/ballboy.png'
-img_alt: 'Ballboy Logo'
+img: '/assets/vollie.png'
+img_alt: 'Vollie App Hero'
 order: 0
 cardText: [
   {
-    header: 'Ballboy (In Progress)',
+    header: 'Vollie (In Progress)',
     body: 'Designing and building a web & mobile app that makes finding and hosting tennis sessions simple'
   },
   {
