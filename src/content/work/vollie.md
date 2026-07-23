@@ -1,6 +1,6 @@
 ---
 title: 'Vollie (In Progress)'
-action_url: 'https://vollie.expo.app/'
+action_url: 'https://vollie--staging.expo.app/'
 cta_text: 'Click to see the app'
 img: '/assets/vollie.png'
 img_alt: 'Vollie App Hero'
